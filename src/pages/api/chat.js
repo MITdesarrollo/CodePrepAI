@@ -1,6 +1,20 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import fs from 'fs';
+import path from 'path';
 
 const genAI = new GoogleGenerativeAI(import.meta.env.GEMINI_API_KEY);
+
+// 📚 Cargar vault de preguntas
+let preguntasVault = null;
+try {
+  const vaultPath = path.join(process.cwd(), 'public', 'data', 'preguntas.json');
+  const vaultData = fs.readFileSync(vaultPath, 'utf-8');
+  preguntasVault = JSON.parse(vaultData);
+  console.log(`[Vault] Cargadas ${preguntasVault.preguntas.length} preguntas`);
+} catch (error) {
+  console.error('[Vault] Error cargando preguntas:', error.message);
+  preguntasVault = { preguntas: [], metadata: {} };
+}
 
 // 🎯 LÍMITES GENEROSOS (gracias a Gemini)
 const LIMITS = {
@@ -85,19 +99,42 @@ export async function POST({ request, clientAddress }) {
       });
     }
 
+    // 📚 Preparar contexto del vault de preguntas
+    const vaultContext = preguntasVault.preguntas.length > 0 ? `
+
+📚 VAULT DE PREGUNTAS REALES:
+Tenés acceso a un vault con ${preguntasVault.preguntas.length} preguntas reales de entrevistas en empresas de LATAM.
+
+Cuando hagas preguntas, PRIORIZÁ usar preguntas del vault que coincidan con:
+- El stack tecnológico que el candidato mencionó
+- La empresa o tipo de empresa (si la mencionó)
+- El nivel de seniority
+- El tipo de pregunta que le interesa practicar (técnica/conductual)
+
+Cuando uses una pregunta del vault, mencioná de qué empresa es. Por ejemplo:
+"Esta es una pregunta real que hicieron en Mercado Libre:"
+
+Preguntas disponibles en el vault:
+${preguntasVault.preguntas.map(p => `
+- [${p.empresa}] ${p.pregunta} (${p.tipo}, ${p.categoria}, ${p.nivel})
+  ${p.tips ? `💡 ${p.tips}` : ''}
+  ${p.red_flags ? `⚠️ ${p.red_flags}` : ''}
+`).join('\n')}
+` : '';
+
     // Inicializar el modelo
-    const model = genAI.getGenerativeModel({ 
+    const model = genAI.getGenerativeModel({
       model: import.meta.env.GEMINI_MODEL || 'gemini-1.5-flash',
-      systemInstruction: `Eres "CodePrep AI", un asistente experto en preparación para entrevistas técnicas de desarrollo frontend. 
+      systemInstruction: `Eres "CodePrep AI", un asistente experto en preparación para entrevistas técnicas de desarrollo frontend.
 
 Tu objetivo es ayudar a candidatos a prepararse para entrevistas laborales mediante:
 
-1. Simulación de preguntas técnicas y conductuales
+1. Simulación de preguntas técnicas y conductuales (PRIORIZÁ usar preguntas del vault cuando aplique)
 2. Análisis de respuestas con feedback constructivo y detallado
 3. Sugerencias de mejora específicas y ejemplos prácticos
 4. Estructuración de respuestas usando el método STAR
 
-IMPORTANTE: 
+IMPORTANTE:
 - Sé profesional pero cercano
 - Da feedback constructivo, nunca crítico
 - Usa formato claro con emojis: ✅ (bien), ⚠️ (mejorar), 💡 (ejemplo)
@@ -109,7 +146,9 @@ METODOLOGÍA para feedback:
 ✅ QUÉ ESTUVO BIEN: [aspectos positivos específicos]
 ⚠️ PARA MEJORAR: [áreas de oportunidad concretas]
 💡 RESPUESTA MEJORADA: [ejemplo estructurado y completo]
-📚 RECURSOS: [si aplica, sugerir qué estudiar]`
+📚 RECURSOS: [si aplica, sugerir qué estudiar]
+
+${vaultContext}`
     });
 
     // Convertir mensajes al formato de Gemini

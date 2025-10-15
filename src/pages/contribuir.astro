@@ -1,0 +1,259 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Heart, Github, MessageSquare, Send } from 'lucide-react';
+---
+
+<Layout title="Contribuir al Vault - CodePrep AI">
+  <div class="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-slate-950/80 backdrop-blur-lg border-b border-purple-500/20 z-40">
+      <div class="max-w-7xl mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <a href="/" class="flex items-center gap-2">
+            <div class="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
+              <span class="text-2xl">🧠</span>
+            </div>
+            <span class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+              CodePrep AI
+            </span>
+          </a>
+          <a href="/" class="hover:text-purple-400 transition-colors">← Volver al inicio</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-12 px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 bg-purple-500/10 border border-purple-500/30 rounded-full px-4 py-2 mb-6">
+          <Heart class="w-4 h-4 text-purple-400" />
+          <span class="text-sm text-purple-300">Ayudá a la comunidad</span>
+        </div>
+
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+          Compartí tu experiencia de <span class="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">entrevista</span>
+        </h1>
+
+        <p class="text-xl text-slate-300 mb-8">
+          ¿Te hicieron una pregunta interesante en una entrevista? ¿Algo que te dejó pensando o que te hubiera gustado practicar antes? Compartila acá y ayudá a que otros se preparen mejor.
+        </p>
+      </div>
+    </section>
+
+    <!-- Dos formas de contribuir -->
+    <section class="py-12 px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12">Dos formas de contribuir</h2>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Opción 1: Google Form -->
+          <div class="bg-slate-900/50 backdrop-blur-xl border border-purple-500/30 rounded-2xl p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                <MessageSquare class="w-6 h-6 text-purple-400" />
+              </div>
+              <h3 class="text-2xl font-bold">Formulario rápido</h3>
+            </div>
+
+            <p class="text-slate-400 mb-6">
+              La forma más fácil. Completás un form y yo me encargo de agregar tu pregunta al vault. Tarda 2 minutos.
+            </p>
+
+            <div class="space-y-4 mb-6">
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-green-400 text-sm">✓</span>
+                </div>
+                <span class="text-slate-300">No necesitás saber de GitHub</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-green-400 text-sm">✓</span>
+                </div>
+                <span class="text-slate-300">Súper rápido</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-green-400 text-sm">✓</span>
+                </div>
+                <span class="text-slate-300">Podés ser anónima/o</span>
+              </div>
+            </div>
+
+            <a
+              href="#formulario"
+              class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all flex items-center justify-center gap-2"
+            >
+              <Send class="w-5 h-5" />
+              Ir al formulario
+            </a>
+          </div>
+
+          <!-- Opción 2: Pull Request -->
+          <div class="bg-slate-900/50 backdrop-blur-xl border border-purple-500/30 rounded-2xl p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                <Github class="w-6 h-6 text-blue-400" />
+              </div>
+              <h3 class="text-2xl font-bold">Pull Request directo</h3>
+            </div>
+
+            <p class="text-slate-400 mb-6">
+              Si sabés de Git, podés hacer un PR directamente al archivo JSON. Tu nombre queda en los contributors.
+            </p>
+
+            <div class="space-y-4 mb-6">
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-green-400 text-sm">✓</span>
+                </div>
+                <span class="text-slate-300">Crédito como contributor</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-green-400 text-sm">✓</span>
+                </div>
+                <span class="text-slate-300">Más control sobre el formato</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span class="text-green-400 text-sm">✓</span>
+                </div>
+                <span class="text-slate-300">Perfecto para devs</span>
+              </div>
+            </div>
+
+            <a
+              href="https://github.com/MITdesarrollo/demo-bot/blob/main/CONTRIBUTING.md"
+              target="_blank"
+              class="w-full bg-slate-800 text-white px-6 py-3 rounded-xl font-semibold border border-purple-500/30 hover:border-purple-500/50 transition-all flex items-center justify-center gap-2"
+            >
+              <Github class="w-5 h-5" />
+              Ver guía en GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Qué tipo de preguntas sirven -->
+    <section class="py-12 px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-slate-900/50 backdrop-blur-xl border border-purple-500/30 rounded-2xl p-8">
+          <h2 class="text-2xl font-bold mb-6">¿Qué tipo de preguntas sirven?</h2>
+
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-lg font-semibold text-green-400 mb-2">✅ Sí, estas sirven:</h3>
+              <ul class="space-y-2 text-slate-300">
+                <li class="flex items-start gap-2">
+                  <span class="text-green-400 mt-1">•</span>
+                  <span>Preguntas técnicas específicas que te hicieron en entrevistas reales</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-400 mt-1">•</span>
+                  <span>Preguntas conductuales o de comportamiento</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-400 mt-1">•</span>
+                  <span>Coding challenges o ejercicios que te dieron</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-400 mt-1">•</span>
+                  <span>Preguntas de system design o arquitectura</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-400 mt-1">•</span>
+                  <span>Preguntas que te sorprendieron o te dejaron pensando</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-semibold text-red-400 mb-2">❌ Estas no tanto:</h3>
+              <ul class="space-y-2 text-slate-300">
+                <li class="flex items-start gap-2">
+                  <span class="text-red-400 mt-1">•</span>
+                  <span>Preguntas inventadas o que nunca te hicieron realmente</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-red-400 mt-1">•</span>
+                  <span>Información confidencial o sensible de empresas</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-red-400 mt-1">•</span>
+                  <span>Preguntas muy genéricas tipo "hablame de vos"</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formulario embebido -->
+    <section id="formulario" class="py-12 px-6">
+      <div class="max-w-3xl mx-auto">
+        <div class="bg-slate-900/50 backdrop-blur-xl border border-purple-500/30 rounded-2xl p-8">
+          <h2 class="text-3xl font-bold mb-4 text-center">Compartí tu pregunta</h2>
+          <p class="text-slate-400 text-center mb-8">
+            Completá este formulario y tu pregunta se sumará al vault comunitario
+          </p>
+
+          <!-- Acá va el Google Form embebido -->
+          <div class="bg-slate-800/50 rounded-xl p-8 border border-purple-500/20">
+            <p class="text-center text-slate-400 mb-4">
+              📝 El formulario de Google aparecerá acá una vez que lo configures
+            </p>
+            <p class="text-center text-sm text-slate-500">
+              Reemplazá este div con el iframe del Google Form cuando lo tengas listo
+            </p>
+
+            <!-- Ejemplo de código para cuando tengas el form:
+            <iframe
+              src="TU_LINK_DE_GOOGLE_FORM"
+              width="100%"
+              height="800"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+              class="rounded-lg"
+            >
+              Cargando…
+            </iframe>
+            -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Agradecimiento -->
+    <section class="py-12 px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="bg-gradient-to-r from-purple-600/20 to-blue-600/20 backdrop-blur-xl border border-purple-500/30 rounded-2xl p-12">
+          <h2 class="text-3xl font-bold mb-4">Gracias por contribuir</h2>
+          <p class="text-xl text-slate-300 mb-6">
+            Cada pregunta que compartís ayuda a que alguien más llegue mejor preparada/o a su entrevista. Eso es enorme.
+          </p>
+          <p class="text-slate-400">
+            Si tenés dudas, escribime a <a href="mailto:contacto@mariel-torres.website" class="text-purple-400 hover:text-purple-300">contacto@mariel-torres.website</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-purple-500/20 py-8 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center text-slate-400">
+          <p>Hecho con 💜 por <a href="https://www.mariel-torres.website" target="_blank" class="text-purple-400 hover:text-purple-300">Mariel Torres</a></p>
+          <p class="mt-2 text-sm">
+            <a href="/" class="text-purple-400 hover:text-purple-300">Inicio</a> •
+            <a href="/preguntas" class="text-purple-400 hover:text-purple-300 ml-2">Ver preguntas</a> •
+            <a href="https://github.com/MITdesarrollo/demo-bot" target="_blank" class="text-purple-400 hover:text-purple-300 ml-2">GitHub</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</Layout>

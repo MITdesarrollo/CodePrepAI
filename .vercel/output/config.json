@@ -14,14 +14,6 @@
 		{
 			"src": "^\\/_image$",
 			"dest": "_render"
-		},
-		{
-			"src": "^\\/api\\/chat\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/$",
-			"dest": "_render"
 		}
 	]
 }

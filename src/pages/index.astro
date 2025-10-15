@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import ChatBot from '../components/ChatBot.jsx';
 import StartChatButton from '../components/StartChatButton.jsx';
-import { MessageCircle, Target, Zap, BarChart, CheckCircle, Sparkles, Brain, TrendingUp, Heart } from 'lucide-react';
 ---
 
 <Layout title="CodePrep AI - Practica tus entrevistas técnicas">
@@ -13,7 +12,7 @@ import { MessageCircle, Target, Zap, BarChart, CheckCircle, Sparkles, Brain, Tre
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
             <div class="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
-              <Brain class="w-6 h-6" />
+              <span class="text-2xl">🧠</span>
             </div>
             <span class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
               CodePrep AI
@@ -22,8 +21,8 @@ import { MessageCircle, Target, Zap, BarChart, CheckCircle, Sparkles, Brain, Tre
 
           <div class="hidden md:flex items-center gap-8">
             <a href="#sobre-esto" class="hover:text-purple-400 transition-colors">Sobre esto</a>
-            <a href="#como-funciona" class="hover:text-purple-400 transition-colors">Cómo funciona</a>
-            <a href="#por-que" class="hover:text-purple-400 transition-colors">Por qué lo hice</a>
+            <a href="/preguntas" class="hover:text-purple-400 transition-colors">Preguntas</a>
+            <a href="/contribuir" class="hover:text-purple-400 transition-colors">Contribuir</a>
           </div>
         </div>
       </div>
@@ -35,7 +34,7 @@ import { MessageCircle, Target, Zap, BarChart, CheckCircle, Sparkles, Brain, Tre
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <div class="inline-flex items-center gap-2 bg-purple-500/10 border border-purple-500/30 rounded-full px-4 py-2 mb-6">
-              <Sparkles class="w-4 h-4 text-purple-400" />
+              <span class="text-purple-400">✨</span>
               <span class="text-sm text-purple-300">Proyecto de aprendizaje + IA</span>
             </div>
 
@@ -68,7 +67,7 @@ import { MessageCircle, Target, Zap, BarChart, CheckCircle, Sparkles, Brain, Tre
               </div>
               <div>
                 <div class="text-3xl font-bold text-purple-400">
-                  <Heart class="w-8 h-8 inline-block" />
+                  💜
                 </div>
                 <div class="text-sm text-slate-400">Hecho con amor</div>
               </div>
@@ -88,7 +87,7 @@ import { MessageCircle, Target, Zap, BarChart, CheckCircle, Sparkles, Brain, Tre
                 <div class="bg-purple-500/10 border border-purple-500/30 rounded-lg p-4">
                   <div class="flex items-start gap-3">
                     <div class="w-8 h-8 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Brain class="w-5 h-5" />
+                      <span class="text-sm">🧠</span>
                     </div>
                     <div class="flex-1">
                       <p class="text-sm text-slate-300">
@@ -114,7 +113,7 @@ import { MessageCircle, Target, Zap, BarChart, CheckCircle, Sparkles, Brain, Tre
                 <div class="bg-purple-500/10 border border-purple-500/30 rounded-lg p-4">
                   <div class="flex items-start gap-3">
                     <div class="w-8 h-8 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Brain class="w-5 h-5" />
+                      <span class="text-sm">🧠</span>
                     </div>
                     <div class="flex-1">
                       <p class="text-sm text-slate-300">
@@ -140,32 +139,32 @@ import { MessageCircle, Target, Zap, BarChart, CheckCircle, Sparkles, Brain, Tre
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div class="bg-slate-800/50 backdrop-blur-xl border border-purple-500/20 rounded-xl p-6 hover:border-purple-500/50 transition-all">
-            <div class="w-16 h-16 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-lg flex items-center justify-center mb-4 text-purple-400">
-              <Target class="w-8 h-8" />
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-lg flex items-center justify-center mb-4 text-4xl">
+              🎯
             </div>
             <h3 class="text-xl font-semibold mb-2">Preguntas adaptadas</h3>
             <p class="text-slate-400">El bot se adapta a lo que le cuentes sobre la posición. React, Next, Vue, lo que sea.</p>
           </div>
 
           <div class="bg-slate-800/50 backdrop-blur-xl border border-purple-500/20 rounded-xl p-6 hover:border-purple-500/50 transition-all">
-            <div class="w-16 h-16 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-lg flex items-center justify-center mb-4 text-purple-400">
-              <Zap class="w-8 h-8" />
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-lg flex items-center justify-center mb-4 text-4xl">
+              ⚡
             </div>
             <h3 class="text-xl font-semibold mb-2">Feedback al toque</h3>
             <p class="text-slate-400">Te dice qué estuvo bien, qué podés mejorar, y te da un ejemplo de cómo decirlo mejor.</p>
           </div>
 
           <div class="bg-slate-800/50 backdrop-blur-xl border border-purple-500/20 rounded-xl p-6 hover:border-purple-500/50 transition-all">
-            <div class="w-16 h-16 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-lg flex items-center justify-center mb-4 text-purple-400">
-              <BarChart class="w-8 h-8" />
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-lg flex items-center justify-center mb-4 text-4xl">
+              📊
             </div>
             <h3 class="text-xl font-semibold mb-2">Método STAR</h3>
             <p class="text-slate-400">Para esas preguntas de "contame una vez que..." te ayuda a estructurar la respuesta.</p>
           </div>
 
           <div class="bg-slate-800/50 backdrop-blur-xl border border-purple-500/20 rounded-xl p-6 hover:border-purple-500/50 transition-all">
-            <div class="w-16 h-16 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-lg flex items-center justify-center mb-4 text-purple-400">
-              <TrendingUp class="w-8 h-8" />
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-lg flex items-center justify-center mb-4 text-4xl">
+              📈
             </div>
             <h3 class="text-xl font-semibold mb-2">Practica sin miedo</h3>
             <p class="text-slate-400">No hay nadie del otro lado juzgándote. Equivocate mil veces, nadie se entera.</p>
@@ -226,6 +225,82 @@ import { MessageCircle, Target, Zap, BarChart, CheckCircle, Sparkles, Brain, Tre
       </div>
     </section>
 
+    <!-- Vault Comunitario Section -->
+    <section class="py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold mb-4">Vault comunitario de preguntas</h2>
+          <p class="text-xl text-slate-400">Preguntas reales que te hicieron en entrevistas</p>
+        </div>
+
+        <div class="bg-gradient-to-r from-purple-600/10 to-blue-600/10 backdrop-blur-xl border border-purple-500/30 rounded-2xl p-8 mb-8">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 class="text-2xl font-bold mb-4">15+ preguntas reales de empresas LATAM</h3>
+              <p class="text-slate-300 mb-6">
+                El bot tiene acceso a un vault con preguntas que realmente hicieron en Mercado Libre, Globant, Auth0, PedidosYa, Ualá, y más empresas de la región.
+              </p>
+              <p class="text-slate-400 mb-6">
+                Cuando practiques, el bot prioriza usar preguntas del vault que coincidan con tu perfil, stack tecnológico y el tipo de posición que buscás.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="/preguntas"
+                  class="inline-flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors"
+                >
+                  Ver todas las preguntas
+                </a>
+                <a
+                  href="/contribuir"
+                  class="inline-flex items-center justify-center gap-2 bg-slate-800 border border-purple-500/30 hover:border-purple-500/50 text-white px-6 py-3 rounded-xl font-semibold transition-colors"
+                >
+                  Compartir tu experiencia
+                </a>
+              </div>
+            </div>
+
+            <div class="bg-slate-900/50 rounded-xl p-6 border border-purple-500/20">
+              <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                  <div>
+                    <p class="text-sm font-medium text-purple-300">Mercado Libre</p>
+                    <p class="text-slate-400 text-sm">Explicá la diferencia entre useMemo y useCallback</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 bg-blue-400 rounded-full mt-2"></div>
+                  <div>
+                    <p class="text-sm font-medium text-blue-300">Auth0</p>
+                    <p class="text-slate-400 text-sm">¿Cómo implementarías OAuth2 en Next.js?</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                  <div>
+                    <p class="text-sm font-medium text-purple-300">PedidosYa</p>
+                    <p class="text-slate-400 text-sm">Optimizá una página que tarda 8 segundos en cargar</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 bg-blue-400 rounded-full mt-2"></div>
+                  <div>
+                    <p class="text-sm font-medium text-blue-300">Globant</p>
+                    <p class="text-slate-400 text-sm">Contame de un conflicto con un compañero</p>
+                  </div>
+                </div>
+                <div class="text-center pt-4">
+                  <a href="/preguntas" class="text-purple-400 hover:text-purple-300 text-sm font-medium">
+                    + 11 preguntas más →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Por qué lo hice Section -->
     <section id="por-que" class="py-20 px-6 bg-slate-900/50">
       <div class="max-w-4xl mx-auto">
@@ -258,17 +333,17 @@ import { MessageCircle, Target, Zap, BarChart, CheckCircle, Sparkles, Brain, Tre
 
         <div class="mt-12 grid md:grid-cols-3 gap-6">
           <div class="flex items-center gap-3 bg-slate-800/50 backdrop-blur-xl border border-purple-500/20 rounded-lg p-4">
-            <CheckCircle class="w-6 h-6 text-green-400 flex-shrink-0" />
+            <span class="text-green-400 text-xl flex-shrink-0">✓</span>
             <span class="text-slate-300">Gratis y va a seguir siéndolo</span>
           </div>
 
           <div class="flex items-center gap-3 bg-slate-800/50 backdrop-blur-xl border border-purple-500/20 rounded-lg p-4">
-            <CheckCircle class="w-6 h-6 text-green-400 flex-shrink-0" />
+            <span class="text-green-400 text-xl flex-shrink-0">✓</span>
             <span class="text-slate-300">Open source en GitHub</span>
           </div>
 
           <div class="flex items-center gap-3 bg-slate-800/50 backdrop-blur-xl border border-purple-500/20 rounded-lg p-4">
-            <CheckCircle class="w-6 h-6 text-green-400 flex-shrink-0" />
+            <span class="text-green-400 text-xl flex-shrink-0">✓</span>
             <span class="text-slate-300">Hecho con Astro + Gemini AI</span>
           </div>
         </div>

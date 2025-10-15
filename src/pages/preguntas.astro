@@ -1,0 +1,346 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Cargar preguntas del JSON directamente
+import preguntasData from '../../public/data/preguntas.json';
+const preguntas = preguntasData.preguntas;
+const metadata = preguntasData.metadata;
+
+// Obtener valores únicos para filtros
+const empresasUnicas = [...new Set(preguntas.map(p => p.empresa))].sort();
+const tiposUnicos = [...new Set(preguntas.map(p => p.tipo))].sort();
+const stackUnicos = [...new Set(preguntas.flatMap(p => p.stack))].sort();
+---
+
+<Layout title="Vault de Preguntas - CodePrep AI">
+  <div class="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-slate-950/80 backdrop-blur-lg border-b border-purple-500/20 z-40">
+      <div class="max-w-7xl mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <a href="/" class="flex items-center gap-2">
+            <div class="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
+              <span class="text-2xl">🧠</span>
+            </div>
+            <span class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+              CodePrep AI
+            </span>
+          </a>
+          <div class="flex items-center gap-6">
+            <a href="/contribuir" class="text-purple-400 hover:text-purple-300 transition-colors">Contribuir</a>
+            <a href="/" class="hover:text-purple-400 transition-colors">← Inicio</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-12 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+          <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            Vault de <span class="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Preguntas</span>
+          </h1>
+          <p class="text-xl text-slate-300 mb-4">
+            {metadata.total_preguntas} preguntas reales de entrevistas en empresas de LATAM
+          </p>
+          <p class="text-slate-400">
+            Última actualización: {new Date(metadata.ultima_actualizacion).toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </p>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          <div class="bg-slate-900/50 backdrop-blur-xl border border-purple-500/20 rounded-xl p-6 text-center">
+            <div class="text-3xl font-bold text-purple-400">{metadata.estadisticas.tecnicas}</div>
+            <div class="text-sm text-slate-400 mt-1">Técnicas</div>
+          </div>
+          <div class="bg-slate-900/50 backdrop-blur-xl border border-purple-500/20 rounded-xl p-6 text-center">
+            <div class="text-3xl font-bold text-blue-400">{metadata.estadisticas.conductuales}</div>
+            <div class="text-sm text-slate-400 mt-1">Conductuales</div>
+          </div>
+          <div class="bg-slate-900/50 backdrop-blur-xl border border-purple-500/20 rounded-xl p-6 text-center">
+            <div class="text-3xl font-bold text-purple-400">{metadata.estadisticas.empresas_unicas}</div>
+            <div class="text-sm text-slate-400 mt-1">Empresas</div>
+          </div>
+          <div class="bg-slate-900/50 backdrop-blur-xl border border-purple-500/20 rounded-xl p-6 text-center">
+            <div class="text-3xl font-bold text-blue-400">{metadata.estadisticas.paises.length}</div>
+            <div class="text-sm text-slate-400 mt-1">Países</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filtros y búsqueda -->
+    <section class="px-6 pb-8">
+      <div class="max-w-7xl mx-auto">
+        <div class="bg-slate-900/50 backdrop-blur-xl border border-purple-500/20 rounded-xl p-6">
+          <div class="grid md:grid-cols-4 gap-4" id="filters">
+            <!-- Búsqueda -->
+            <div class="md:col-span-4">
+              <label class="block text-sm font-medium text-slate-300 mb-2">
+                <span class="inline mr-2">🔍</span>
+                Buscar
+              </label>
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Busca por empresa, tecnología, o palabras clave..."
+                class="w-full bg-slate-800 border border-purple-500/30 rounded-lg px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500"
+              />
+            </div>
+
+            <!-- Filtro por tipo -->
+            <div>
+              <label class="block text-sm font-medium text-slate-300 mb-2">
+                <span class="inline mr-2">🔽</span>
+                Tipo
+              </label>
+              <select
+                id="tipoFilter"
+                class="w-full bg-slate-800 border border-purple-500/30 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
+              >
+                <option value="">Todos</option>
+                {tiposUnicos.map(tipo => (
+                  <option value={tipo}>{tipo}</option>
+                ))}
+              </select>
+            </div>
+
+            <!-- Filtro por empresa -->
+            <div>
+              <label class="block text-sm font-medium text-slate-300 mb-2">
+                <span class="inline mr-2">🏢</span>
+                Empresa
+              </label>
+              <select
+                id="empresaFilter"
+                class="w-full bg-slate-800 border border-purple-500/30 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
+              >
+                <option value="">Todas</option>
+                {empresasUnicas.map(empresa => (
+                  <option value={empresa}>{empresa}</option>
+                ))}
+              </select>
+            </div>
+
+            <!-- Filtro por stack -->
+            <div>
+              <label class="block text-sm font-medium text-slate-300 mb-2">
+                <span class="inline mr-2">💻</span>
+                Stack
+              </label>
+              <select
+                id="stackFilter"
+                class="w-full bg-slate-800 border border-purple-500/30 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500"
+              >
+                <option value="">Todos</option>
+                {stackUnicos.map(stack => (
+                  <option value={stack}>{stack}</option>
+                ))}
+              </select>
+            </div>
+
+            <!-- Botón limpiar -->
+            <div class="flex items-end">
+              <button
+                id="clearFilters"
+                class="w-full bg-slate-800 border border-purple-500/30 rounded-lg px-4 py-2 text-white hover:border-purple-500/50 transition-colors"
+              >
+                Limpiar filtros
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lista de preguntas -->
+    <section class="px-6 pb-20">
+      <div class="max-w-7xl mx-auto">
+        <div id="preguntasContainer" class="grid gap-6">
+          {preguntas.map(pregunta => (
+            <div
+              class="pregunta-card bg-slate-900/50 backdrop-blur-xl border border-purple-500/20 rounded-xl p-6 hover:border-purple-500/50 transition-all"
+              data-tipo={pregunta.tipo}
+              data-empresa={pregunta.empresa}
+              data-stack={JSON.stringify(pregunta.stack)}
+              data-nivel={pregunta.nivel}
+              data-pais={pregunta.pais}
+              data-searchtext={`${pregunta.pregunta} ${pregunta.empresa} ${pregunta.stack.join(' ')} ${pregunta.categoria}`.toLowerCase()}
+            >
+              <!-- Header -->
+              <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
+                <div class="flex-1">
+                  <div class="flex flex-wrap items-center gap-2 mb-3">
+                    <span class={`px-3 py-1 rounded-full text-xs font-medium ${
+                      pregunta.tipo === 'técnica' ? 'bg-purple-500/20 text-purple-300' :
+                      pregunta.tipo === 'conductual' ? 'bg-blue-500/20 text-blue-300' :
+                      'bg-green-500/20 text-green-300'
+                    }`}>
+                      {pregunta.tipo}
+                    </span>
+                    <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-700 text-slate-300">
+                      {pregunta.categoria}
+                    </span>
+                    <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-700 text-slate-300">
+                      {pregunta.nivel}
+                    </span>
+                  </div>
+                  <h3 class="text-xl font-semibold text-white mb-2">
+                    {pregunta.pregunta}
+                  </h3>
+                </div>
+              </div>
+
+              <!-- Info empresa y stack -->
+              <div class="flex flex-wrap items-center gap-4 mb-4 text-sm">
+                <div class="flex items-center gap-2 text-slate-400">
+                  <span>🏢</span>
+                  <span>{pregunta.empresa}</span>
+                </div>
+                {pregunta.pais && (
+                  <div class="flex items-center gap-2 text-slate-400">
+                    <span>📍</span>
+                    <span>{pregunta.pais}</span>
+                  </div>
+                )}
+              </div>
+
+              {pregunta.stack.length > 0 && (
+                <div class="flex flex-wrap gap-2 mb-4">
+                  {pregunta.stack.map(tech => (
+                    <span class="px-2 py-1 bg-slate-800 border border-purple-500/20 rounded text-xs text-slate-300">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              <!-- Tips -->
+              {pregunta.tips && (
+                <div class="bg-slate-800/50 rounded-lg p-4 mb-3">
+                  <div class="text-sm font-medium text-green-400 mb-1">💡 Tips</div>
+                  <p class="text-sm text-slate-300">{pregunta.tips}</p>
+                </div>
+              )}
+
+              <!-- Red flags -->
+              {pregunta.red_flags && (
+                <div class="bg-slate-800/50 rounded-lg p-4">
+                  <div class="text-sm font-medium text-red-400 mb-1">⚠️ Red flags</div>
+                  <p class="text-sm text-slate-300">{pregunta.red_flags}</p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <!-- No results message -->
+        <div id="noResults" class="hidden text-center py-12">
+          <p class="text-xl text-slate-400 mb-4">No se encontraron preguntas con esos filtros</p>
+          <button
+            onclick="document.getElementById('clearFilters').click()"
+            class="text-purple-400 hover:text-purple-300 transition-colors"
+          >
+            Limpiar filtros
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA para contribuir -->
+    <section class="px-6 pb-20">
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-gradient-to-r from-purple-600/20 to-blue-600/20 backdrop-blur-xl border border-purple-500/30 rounded-2xl p-12 text-center">
+          <h2 class="text-3xl font-bold mb-4">¿Tenés una pregunta para agregar?</h2>
+          <p class="text-xl text-slate-300 mb-8">
+            Ayudá a la comunidad compartiendo preguntas que te hicieron en entrevistas
+          </p>
+          <a
+            href="/contribuir"
+            class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all"
+          >
+            <span>👥</span>
+            Contribuir al vault
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-purple-500/20 py-8 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center text-slate-400">
+          <p>Hecho con 💜 por <a href="https://www.mariel-torres.website" target="_blank" class="text-purple-400 hover:text-purple-300">Mariel Torres</a></p>
+          <p class="mt-2 text-sm">
+            <a href="/" class="text-purple-400 hover:text-purple-300">Inicio</a> •
+            <a href="/contribuir" class="text-purple-400 hover:text-purple-300 ml-2">Contribuir</a> •
+            <a href="https://github.com/MITdesarrollo/demo-bot" target="_blank" class="text-purple-400 hover:text-purple-300 ml-2">GitHub</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Sistema de filtros y búsqueda
+    const searchInput = document.getElementById('searchInput');
+    const tipoFilter = document.getElementById('tipoFilter');
+    const empresaFilter = document.getElementById('empresaFilter');
+    const stackFilter = document.getElementById('stackFilter');
+    const clearFiltersBtn = document.getElementById('clearFilters');
+    const preguntasCards = document.querySelectorAll('.pregunta-card');
+    const noResults = document.getElementById('noResults');
+
+    function filterPreguntas() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const tipoValue = tipoFilter.value;
+      const empresaValue = empresaFilter.value;
+      const stackValue = stackFilter.value;
+
+      let visibleCount = 0;
+
+      preguntasCards.forEach(card => {
+        const searchText = card.dataset.searchtext;
+        const tipo = card.dataset.tipo;
+        const empresa = card.dataset.empresa;
+        const stack = JSON.parse(card.dataset.stack);
+
+        const matchesSearch = searchText.includes(searchTerm);
+        const matchesTipo = !tipoValue || tipo === tipoValue;
+        const matchesEmpresa = !empresaValue || empresa === empresaValue;
+        const matchesStack = !stackValue || stack.includes(stackValue);
+
+        if (matchesSearch && matchesTipo && matchesEmpresa && matchesStack) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Mostrar/ocultar mensaje de no resultados
+      if (visibleCount === 0) {
+        noResults.classList.remove('hidden');
+      } else {
+        noResults.classList.add('hidden');
+      }
+    }
+
+    function clearFilters() {
+      searchInput.value = '';
+      tipoFilter.value = '';
+      empresaFilter.value = '';
+      stackFilter.value = '';
+      filterPreguntas();
+    }
+
+    // Event listeners
+    searchInput.addEventListener('input', filterPreguntas);
+    tipoFilter.addEventListener('change', filterPreguntas);
+    empresaFilter.addEventListener('change', filterPreguntas);
+    stackFilter.addEventListener('change', filterPreguntas);
+    clearFiltersBtn.addEventListener('click', clearFilters);
+  </script>
+</Layout>
