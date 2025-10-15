@@ -1,0 +1,202 @@
+{
+  "preguntas": [
+    {
+      "id": "ml-001",
+      "pregunta": "Explicá la diferencia entre useMemo y useCallback y cuándo usarías cada uno",
+      "tipo": "técnica",
+      "categoria": "React",
+      "empresa": "Mercado Libre",
+      "stack": ["React", "JavaScript"],
+      "nivel": "Semi-Senior",
+      "pais": "Argentina",
+      "tips": "Mencioná ejemplos de performance, explicá el dependency array, hablá de cuándo NO usarlos también",
+      "red_flags": "No confundir con useMemo para componentes (eso es React.memo)"
+    },
+    {
+      "id": "globant-001",
+      "pregunta": "Contame de una vez que tuviste un conflicto con un compañero de equipo y cómo lo resolviste",
+      "tipo": "conductual",
+      "categoria": "Soft Skills",
+      "empresa": "Globant",
+      "stack": [],
+      "nivel": "Todos",
+      "pais": "Argentina",
+      "tips": "Usá método STAR (Situación, Tarea, Acción, Resultado). Mostrá empatía y capacidad de diálogo",
+      "red_flags": "No culpar a la otra persona ni hablar mal de ex-compañeros"
+    },
+    {
+      "id": "auth0-001",
+      "pregunta": "¿Cómo implementarías autenticación en una aplicación Next.js usando OAuth2?",
+      "tipo": "técnica",
+      "categoria": "Seguridad",
+      "empresa": "Auth0",
+      "stack": ["Next.js", "OAuth2", "JWT"],
+      "nivel": "Senior",
+      "pais": "Argentina",
+      "tips": "Hablá de tokens, refresh tokens, almacenamiento seguro, PKCE si es SPA",
+      "red_flags": "No guardar tokens en localStorage sin explicar los riesgos"
+    },
+    {
+      "id": "pedidosya-001",
+      "pregunta": "Explicá cómo optimizarías una página que tarda 8 segundos en cargar",
+      "tipo": "técnica",
+      "categoria": "Performance",
+      "empresa": "PedidosYa",
+      "stack": ["React", "Next.js", "Performance"],
+      "nivel": "Semi-Senior",
+      "pais": "Uruguay",
+      "tips": "Code splitting, lazy loading, image optimization, analizar bundle size, lighthouse",
+      "red_flags": "No ir directo a 'migrar todo' sin analizar primero"
+    },
+    {
+      "id": "uala-001",
+      "pregunta": "Diseñá un sistema de notificaciones en tiempo real para una app de finanzas",
+      "tipo": "system-design",
+      "categoria": "Arquitectura",
+      "empresa": "Ualá",
+      "stack": ["WebSockets", "Redis", "Node.js"],
+      "nivel": "Senior",
+      "pais": "Argentina",
+      "tips": "Pensá en escala, fallbacks, persistencia, seguridad de mensajes financieros",
+      "red_flags": "No olvidar casos edge: conexión perdida, mensajes duplicados"
+    },
+    {
+      "id": "meli-002",
+      "pregunta": "¿Qué es el Event Loop en JavaScript? Explicalo como si le estuvieras enseñando a alguien que recién empieza",
+      "tipo": "técnica",
+      "categoria": "JavaScript",
+      "empresa": "Mercado Libre",
+      "stack": ["JavaScript", "Node.js"],
+      "nivel": "Junior",
+      "pais": "Argentina",
+      "tips": "Usá analogías, dibujá (o describí) el diagrama, mencioná call stack, task queue, microtasks",
+      "red_flags": "No confundir asincronía con paralelismo real"
+    },
+    {
+      "id": "despegar-001",
+      "pregunta": "Contame de un proyecto que te salió mal y qué aprendiste",
+      "tipo": "conductual",
+      "categoria": "Growth Mindset",
+      "empresa": "Despegar",
+      "stack": [],
+      "nivel": "Todos",
+      "pais": "Argentina",
+      "tips": "Mostrá que aprendiste, qué cambiarías, cómo aplicaste ese aprendizaje después",
+      "red_flags": "No echar culpas ni victimizarte. Asumir tu parte de responsabilidad"
+    },
+    {
+      "id": "rappi-001",
+      "pregunta": "¿Cómo manejarías el estado de un carrito de compras en una app de delivery?",
+      "tipo": "técnica",
+      "categoria": "State Management",
+      "empresa": "Rappi",
+      "stack": ["React", "Redux", "Context API"],
+      "nivel": "Semi-Senior",
+      "pais": "Colombia",
+      "tips": "Hablá de persistencia, sincronización, manejo de productos no disponibles",
+      "red_flags": "No sobrecomplicar con Redux si Context + useReducer alcanza"
+    },
+    {
+      "id": "nubi-001",
+      "pregunta": "Explicá qué es CORS y cómo lo resolverías en una API de producción",
+      "tipo": "técnica",
+      "categoria": "Backend",
+      "empresa": "Nubi",
+      "stack": ["Node.js", "Express", "HTTP"],
+      "nivel": "Semi-Senior",
+      "pais": "Argentina",
+      "tips": "Explicá same-origin policy, opciones de configuración, preflight requests",
+      "red_flags": "No decir 'desactivar CORS' como solución para producción"
+    },
+    {
+      "id": "aerolab-001",
+      "pregunta": "¿Cómo estructurarías los componentes de un Design System escalable?",
+      "tipo": "técnica",
+      "categoria": "Frontend Architecture",
+      "empresa": "Aerolab",
+      "stack": ["React", "TypeScript", "Storybook"],
+      "nivel": "Senior",
+      "pais": "Argentina",
+      "tips": "Atomic design, tokens, accesibilidad, documentación, versionado",
+      "red_flags": "No olvidar testing y accesibilidad"
+    },
+    {
+      "id": "eventbrite-001",
+      "pregunta": "Contame cómo priorizás tareas cuando tenés múltiples deadlines urgentes",
+      "tipo": "conductual",
+      "categoria": "Time Management",
+      "empresa": "Eventbrite",
+      "stack": [],
+      "nivel": "Todos",
+      "pais": "Argentina",
+      "tips": "Mencioná frameworks (Eisenhower, etc), comunicación con stakeholders, realismo",
+      "red_flags": "No decir que hacés todo a la vez o que nunca tenés problemas de tiempo"
+    },
+    {
+      "id": "mercadopago-001",
+      "pregunta": "¿Cómo garantizarías que un pago se procese una sola vez incluso si el usuario hace doble click?",
+      "tipo": "técnica",
+      "categoria": "Idempotencia",
+      "empresa": "Mercado Pago",
+      "stack": ["Node.js", "SQL", "Redis"],
+      "nivel": "Senior",
+      "pais": "Argentina",
+      "tips": "Idempotency keys, transacciones, estados intermedios, timeout handling",
+      "red_flags": "No subestimar race conditions"
+    },
+    {
+      "id": "pichincha-001",
+      "pregunta": "Explicá qué es un closure en JavaScript con un ejemplo práctico",
+      "tipo": "técnica",
+      "categoria": "JavaScript",
+      "empresa": "Banco Pichincha",
+      "stack": ["JavaScript"],
+      "nivel": "Junior",
+      "pais": "Ecuador",
+      "tips": "Ejemplo simple y claro, explicá el scope, casos de uso comunes (event handlers, timers)",
+      "red_flags": "No solo teoría, dar ejemplos de código real"
+    },
+    {
+      "id": "cloudinary-001",
+      "pregunta": "¿Cómo optimizarías la carga de imágenes en un sitio con mucho contenido visual?",
+      "tipo": "técnica",
+      "categoria": "Performance",
+      "empresa": "Cloudinary",
+      "stack": ["React", "Next.js", "Image Optimization"],
+      "nivel": "Semi-Senior",
+      "pais": "Argentina",
+      "tips": "Lazy loading, formatos modernos (WebP, AVIF), responsive images, CDN",
+      "red_flags": "No cargar todas las imágenes de golpe sin lazy loading"
+    },
+    {
+      "id": "belatrix-001",
+      "pregunta": "Contame de una vez que tuviste que aprender una tecnología nueva bajo presión",
+      "tipo": "conductual",
+      "categoria": "Aprendizaje",
+      "empresa": "Belatrix",
+      "stack": [],
+      "nivel": "Todos",
+      "pais": "Argentina",
+      "tips": "Mostrá tu proceso de aprendizaje, recursos que usaste, cómo lo aplicaste",
+      "red_flags": "No exagerar diciendo que aprendiste todo en un día"
+    }
+  ],
+  "metadata": {
+    "ultima_actualizacion": "2025-01-15",
+    "total_preguntas": 15,
+    "contribuidores": [
+      {
+        "nombre": "Mariel Torres",
+        "tipo": "Creadora",
+        "fecha": "2025-01-15"
+      }
+    ],
+    "estadisticas": {
+      "tecnicas": 9,
+      "conductuales": 4,
+      "system_design": 1,
+      "empresas_unicas": 15,
+      "paises": ["Argentina", "Uruguay", "Colombia", "Ecuador"]
+    }
+  }
+}

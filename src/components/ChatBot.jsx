@@ -25,6 +25,18 @@ export default function ChatBot() {
     }
   }, [messages.length]);
 
+  useEffect(() => {
+  const handleOpenChat = () => {
+    startChat();
+  };
+
+  window.addEventListener('openChat', handleOpenChat);
+  
+  return () => {
+    window.removeEventListener('openChat', handleOpenChat);
+  };
+}, []);
+
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
 
@@ -98,7 +110,7 @@ export default function ChatBot() {
     if (messages.length === 0) {
       const welcomeMessage = {
         role: 'assistant',
-        content: "¡Hola! Soy PrepáraTE 🚀\n\n¿Para qué empresa o posición te estás preparando? Si tienes la descripción del puesto, compártela conmigo.\n\n💡 Tip: Tienes hasta 30 mensajes por sesión para practicar en profundidad.",
+        content: "¡Hola! Soy CodePrep AI 🚀\n\n¿Para qué empresa o posición te estás preparando? Contame todo lo que puedas: stack, tipo de rol, lo que sea. Mientras más info, mejor puedo ayudarte.\n\n💡 Tip: Tenés hasta 30 mensajes por sesión para practicar tranqui.",
         timestamp: new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })
       };
       setMessages([welcomeMessage]);
@@ -122,8 +134,8 @@ export default function ChatBot() {
                   <Brain className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="font-semibold">PrepáraTE</h3>
-                  <p className="text-xs text-white/80">Powered by Gemini AI</p>
+                  <h3 className="font-semibold">CodePrep AI</h3>
+                  <p className="text-xs text-white/80">Powered by Gemini AI and Claude</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">

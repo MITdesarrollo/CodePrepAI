@@ -88,7 +88,7 @@ export async function POST({ request, clientAddress }) {
     // Inicializar el modelo
     const model = genAI.getGenerativeModel({ 
       model: import.meta.env.GEMINI_MODEL || 'gemini-1.5-flash',
-      systemInstruction: `Eres "PrepáraTE", un asistente experto en preparación para entrevistas técnicas de desarrollo frontend. 
+      systemInstruction: `Eres "CodePrep AI", un asistente experto en preparación para entrevistas técnicas de desarrollo frontend. 
 
 Tu objetivo es ayudar a candidatos a prepararse para entrevistas laborales mediante:
 
