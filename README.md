@@ -1,6 +1,6 @@
 # 🤖 CodePrep AI - Asistente de IA para Entrevistas Técnicas
 
-Landing page moderna con bot conversacional integrado usando Claude AI para ayudar a desarrolladores a prepararse para entrevistas técnicas.
+Landing page moderna con bot conversacional integrado usando Claude AI y Gemini AI para ayudar a desarrolladores a prepararse para entrevistas técnicas.
 
 ## 🚀 Tech Stack
 
