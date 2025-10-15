@@ -1,4 +1,4 @@
-# 🤖 PrepáraTE - Asistente de IA para Entrevistas Técnicas
+# 🤖 CodePrep AI - Asistente de IA para Entrevistas Técnicas
 
 Landing page moderna con bot conversacional integrado usando Claude AI para ayudar a desarrolladores a prepararse para entrevistas técnicas.
 
